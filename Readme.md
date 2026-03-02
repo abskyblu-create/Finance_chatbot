@@ -1,147 +1,261 @@
-**Finance Chatbot — Demonstration & Documentation**
+# Finance Chatbot — Demonstration & Documentation
 
+🔗 Live Application:
+https://finance-chatbot-84pb.onrender.com
+
+👤 Created by:
+Ankit Bhatt
+
+LinkedIn: https://www.linkedin.com/in/ankit-bhatt-4a1631388/
 
 # 1. Project Overview
 
-The Finance Chatbot is a ***rule-based chatbot built using Python to answer financial questions*** using company financial data. It supports both:
+The Finance Chatbot is a rule-based financial analysis chatbot built using Python.
 
-**Command Line Interface (CLI) chatbot**
+It is designed to answer structured financial questions using company financial datasets containing revenue, net income, assets, liabilities, and derived financial ratios.
 
-**Web-based chatbot using Flask**
+The system supports both:
 
-The chatbot uses cleaned financial data containing **revenue, net income, assets, liabilities, and derived financial ratios** to answer predefined queries.
+Command Line Interface (CLI) chatbot
 
-The goal: Building a fully functional AI chatbot for financial analysis is a complex process involving advanced programming and deep learning techniques. However, to fit the learning objectives and time constraints, this is a streamlined version that introduces to the basics of chatbot development, focusing on creating a prototype that responds to predefined financial queries. 
+Web-based chatbot built using Flask
+
+Cloud-deployed production version (Render)
+
+While building a fully functional AI chatbot typically involves advanced programming and deep learning techniques, this project focuses on a streamlined prototype that demonstrates the fundamentals of chatbot development using predefined financial queries.
+
+The objective is to combine financial analytics, backend engineering, and cloud deployment into a practical working system.
 
 # 2. How the Chatbot Works
 
-The chatbot works using **rule-based logic** implemented with Python if–elif statements.
+The chatbot operates using rule-based logic implemented through Python if–elif conditions.
 
-**Workflow**
+Workflow
 
-- Financial data is loaded using pandas.
+Financial data is loaded using Pandas
 
-- Data columns are standardized (lowercase, spaces removed).
+Data columns are standardized (lowercase, spacing removed, special characters cleaned)
 
-- User input is captured.
+User input is captured
 
-- Input is matched with predefined commands.
+Input is matched against predefined commands
 
-- Relevant data is extracted.
+Relevant financial computations are performed
 
-- Response is displayed to user.
+Structured response is returned
 
+Web Version Flow
 
-**For the web version:**
+User enters query via browser
 
-- User enters query in browser.
+Flask backend receives POST request
 
-- Flask backend processes input.
+chatbot_logic module processes query
 
-- Response is displayed on webpage.
+Pandas performs calculations
+
+Response rendered using Jinja template
+
+Gunicorn serves the application in production
 
 # 3. Supported Queries
 
-The chatbot currently responds to predefined financial questions:
+Users may type the number or supported keywords.
 
-**Option Query: Users may type the number or supported keywords. 
-1	Revenue for latest year
-2	Net income for latest year
-3	Company with highest revenue
-4	Company with highest net income
-5	Revenue growth by company
-6	Profit margin
-7	Debt ratio
-8	Total assets (latest year)
-9	Company with lowest debt ratio
-10	Operating cash flow comparison
-type 'exit' to exit the system**
+Revenue for latest year
+
+Net income for latest year
+
+Company with highest revenue
+
+Company with highest net income
+
+Revenue growth by company
+
+Profit margin
+
+Debt ratio
+
+Total assets (latest year)
+
+Company with lowest debt ratio
+
+Operating cash flow comparison
+
+Type exit in CLI mode to terminate the session.
 
 # 4. Technologies Used
 
-Python
+Python 3.11
 
 Pandas
 
-Flask (web interface)
+Flask
+
+Gunicorn (Production WSGI Server)
+
+Docker
+
+Render Cloud Platform
 
 Jupyter Notebook
 
-CSV financial dataset
+CSV / Excel financial datasets
 
-# 5. Demonstration Steps
+# 5. Architecture
 
+User Browser
+↓
+Render Web Service
+↓
+Gunicorn (WSGI Production Server)
+↓
+Flask Application
+↓
+chatbot_logic Module
+↓
+Pandas Data Processing
+↓
+Structured Financial Insight Response
+
+The production environment ensures that the application runs using Gunicorn instead of Flask’s development server.
+
+# 6. Demonstration Steps
 CLI Version
 
 Run:
 
-**python run_cli.py**
+python run_cli.py
 
+User interacts directly in terminal.
 
-User interacts in terminal.
-
-Web Version
+Web Version (Local)
 
 Run:
 
-**python flask_app.py**
-
+python flask_app.py
 
 Open browser:
 
 http://127.0.0.1:5000
 
-# 6. Example Test Results
+Production Version
 
-- Refer to the images directory for test results.
+Access via:
 
-# 7. Limitations
+https://finance-chatbot-84pb.onrender.com
 
-Current chatbot limitations:
+# 7. Data Handling Approach
 
-Only supports predefined queries.
+To ensure robustness and avoid schema mismatch issues, the chatbot automatically:
 
-Does not understand complex natural language.
+Converts column names to lowercase
 
-No AI/ML model used.
+Removes extra spaces
 
-No conversational memory.
+Replaces spaces with underscores
 
-Requires structured dataset format.
+Removes special characters
 
-Error handling limited for unexpected inputs.
+This makes the application resilient to variations in uploaded CSV/Excel files.
 
-# 8. Future Improvements
+# 8. Example Test Results
 
-Possible upgrades:
+Test scenarios include:
 
-Natural language understanding
+Revenue growth calculations
 
-AI/ML integration
+Profit margin evaluation
 
-Chat memory
+Highest and lowest financial performers
 
-Data visualization inside chat
+Debt ratio comparison
 
-Deployment to cloud
+Operating cash flow aggregation
 
-Voice interface
+Refer to project test cases or screenshots (if included in repository).
 
-# 9. Project Structure
+# 9. Limitations
 
-Example folder:
+Current system limitations include:
+
+Only supports predefined queries
+
+No natural language understanding
+
+No AI/ML model integration
+
+No conversational memory
+
+Requires structured dataset format
+
+Uploaded data stored in memory (demo-oriented)
+
+Free-tier deployment may experience cold-start delay
+
+# 10. Future Improvements
+
+Potential enhancements include:
+
+Natural language query parsing
+
+LLM integration for flexible questions
+
+Multi-user session handling
+
+Database-backed storage
+
+REST API architecture
+
+Authentication and role-based access
+
+Integrated financial visualization dashboard
+
+Logging and monitoring integration
+
+Voice interface support
+
+# 11. Project Structure
+
+Example folder structure:
 
 finance_chatbot_project/
 │
 ├── analysis.ipynb
-├── output.csv
 ├── financial_analysis_EDA.ipynb
 ├── finance_clean_kpis.csv
 ├── chatbot_logic.ipynb
 ├── chatbot_logic.py
 ├── flask_app.py
+├── requirements.txt
+├── Procfile
+├── Dockerfile
 ├── README.md
 
-# 10. Conclusion
+# 12. Key Learning Outcomes
 
-The project demonstrates how financial analytics and chatbot logic can be combined to build an interactive financial assistant.
+Through this project, I strengthened understanding in:
+
+Backend development using Flask
+
+Production deployment using Gunicorn
+
+Data preprocessing with Pandas
+
+Financial KPI computation
+
+Docker-based containerization
+
+Cloud deployment workflows
+
+Debugging real deployment issues (port binding, environment conflicts, CRLF formatting)
+
+Designing structured rule-based chatbot systems
+
+# 13. Conclusion
+
+The Finance Chatbot demonstrates how financial analytics and structured chatbot logic can be combined to build an interactive financial assistant.
+
+It represents a transition from notebook-based data analysis to a fully deployed production-ready web application accessible via a live URL.
+
+This project showcases backend engineering fundamentals, financial data processing capabilities, and cloud deployment practices in a practical and applied manner.
